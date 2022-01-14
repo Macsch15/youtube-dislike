@@ -2,13 +2,14 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Moment from 'react-moment';
+import NumberFormat from 'react-number-format';
 
-function routerParamsHook(Component) {
-  return function WrappedComponent(props) {
+function routerParamsHook (Component) {
+  return function WrappedComponent (props) {
     const routerParams = useParams();
     const navigate = useNavigate();
     return <Component {...props} routerParams={routerParams} navigate={navigate} />;
-  }
+  };
 }
 
 class YoutubeDislike extends React.Component {
@@ -40,7 +41,7 @@ class YoutubeDislike extends React.Component {
       });
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.fetchVideoData();
   }
 
@@ -82,7 +83,7 @@ class YoutubeDislike extends React.Component {
         </div>
 
         <div className={'mt-1 d-flex align-self-start'}>
-          <a className="text-decoration-none text-body" href={'https://www.youtube.com/channel/' + videoChannelId}>{videoChannel}</a>
+          <a className="text-decoration-none text-body" href={'https://www.youtube.com/channel/' + videoChannelId}><i className="fa fa-link" aria-hidden="true" /> {videoChannel}</a>
         </div>
 
         <div className={'mt-1 d-flex align-self-start'}>
@@ -104,15 +105,71 @@ class YoutubeDislike extends React.Component {
 
         <div className={'mt-3 text-center w-100'}>
           <Row xs={1} md={4} lg={4} className={'d-flex justify-content-evenly'}>
-            <Col className={'p-2'}><span className={'fs-5'}><i className="fa fa-thumbs-up text-success" aria-hidden="true" /> Likes</span><br /><span className={'fs-4'}><b>{likes}</b></span></Col>
-            <Col className={'p-2'}><span className={'fs-5'}><i className="fa fa fa-thumbs-down text-danger" aria-hidden="true" /> Dislikes</span><br /><span className={'fs-4'}><b>{dislikes}</b></span></Col>
-            <Col className={'p-2'}><span className={'fs-5'}><i className="fa fa-line-chart" aria-hidden="true" /> Views</span><br /><span className={'fs-4'}><b>{views}</b></span></Col>
-            <Col className={'p-2'}><span className={'fs-5'}><i className="fa fa-comments" aria-hidden="true" /> Comments</span><br /><span className={'fs-4'}><b>{videoComments}</b></span></Col>
+            <Col className={'p-2'}>
+              <span className={'fs-5'}><i className="fa fa-thumbs-up text-success" aria-hidden="true" /> Likes</span>
+              <br />
+              <span className={'fs-4'}>
+                <b>
+                  <NumberFormat
+                    thousandsGroupStyle="thousand"
+                    value={likes}
+                    thousandSeparator=" "
+                    displayType="text"
+                    type="text"
+                    allowNegative={false} />
+                </b>
+              </span>
+            </Col>
+            <Col className={'p-2'}>
+              <span className={'fs-5'}><i className="fa fa fa-thumbs-down text-danger" aria-hidden="true" /> Dislikes</span>
+              <br />
+              <span className={'fs-4'}>
+                <b>
+                  <NumberFormat
+                  thousandsGroupStyle="thousand"
+                  value={dislikes}
+                  thousandSeparator=" "
+                  displayType="text"
+                  type="text"
+                  allowNegative={false} />
+                </b>
+              </span>
+            </Col>
+            <Col className={'p-2'}>
+              <span className={'fs-5'}><i className="fa fa-line-chart" aria-hidden="true" /> Views</span>
+              <br />
+              <span className={'fs-4'}>
+                <b>
+                  <NumberFormat
+                  thousandsGroupStyle="thousand"
+                  value={views}
+                  thousandSeparator=" "
+                  displayType="text"
+                  type="text"
+                  allowNegative={false} />
+                </b>
+              </span>
+            </Col>
+            <Col className={'p-2'}>
+              <span className={'fs-5'}><i className="fa fa-comments" aria-hidden="true" /> Comments</span>
+              <br />
+              <span className={'fs-4'}>
+                <b>
+                  <NumberFormat
+                  thousandsGroupStyle="thousand"
+                  value={videoComments}
+                  thousandSeparator=" "
+                  displayType="text"
+                  type="text"
+                  allowNegative={false} />
+                </b>
+              </span>
+            </Col>
           </Row>
         </div>
 
         <div className={'mt-4'}>
-          <Button variant="primary" onClick={() => {this.props.navigate('/')}}>Return to homepage</Button>
+          <Button variant="primary" onClick={() => {this.props.navigate('/');}}>Return to homepage</Button>
         </div>
       </Container>
     );
