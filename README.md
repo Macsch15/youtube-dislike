@@ -13,6 +13,8 @@ Add Google API v3 key in `/src/config.json`:
 
 Instructions how to obtain API key: [https://developers.google.com/youtube/v3/getting-started](https://developers.google.com/youtube/v3/getting-started)
 
+Note: Youtube API is used only for video title, comments count, date added.
+
 Then:
 
 ```
