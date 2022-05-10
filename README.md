@@ -1,0 +1,9 @@
+# youtube-dislike
+
+A simple app written in React.js that shows dislikes (also likes) in youtube video.
+![Zrzut ekranu 2022-05-10 o 10 36 18](https://user-images.githubusercontent.com/1592053/167588242-21453616-5fda-47a0-bfbc-c3645b02e8ee.png)
+
+# How to install?
+```
+$ npm install
+```
