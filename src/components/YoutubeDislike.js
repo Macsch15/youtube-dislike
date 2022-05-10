@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Moment from 'react-moment';
 import NumberFormat from 'react-number-format';
+import config from '../config.json';
 
 function routerParamsHook (Component) {
   return function WrappedComponent (props) {
@@ -26,17 +27,17 @@ class YoutubeDislike extends React.Component {
   fetchVideoData () {
     this.setState({...this.state, isFetching: true, isFetchingApi: true});
 
-    fetch('https://returnyoutubedislikeapi.com/votes?videoId=' + this.props.routerParams.videoId)
+    fetch(`https://returnyoutubedislikeapi.com/votes?videoId=${this.props.routerParams.videoId}`)
       .then(response => response.json())
       .then(data => this.setState({videoData: data, isFetching: false}))
       .catch(e => {
         this.setState({...this.state, isFetching: false});
       });
 
-    fetch('https://www.googleapis.com/youtube/v3/videos?id=' + this.props.routerParams.videoId + '&key=AIzaSyBYu0C9QOLi1svC9TdxSROOvdqzRfZZQNM&part=snippet,contentDetails,statistics,status')
+    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${this.props.routerParams.videoId}&key=${config.GOOGLE_YOUTUBE_API_KEY}&part=snippet,contentDetails,statistics,status`)
       .then(response => response.json())
       .then(data => this.setState({videoApiData: data, isFetchingApi: false}))
-      .catch(e => {
+      .catch(() => {
         this.setState({...this.state, isFetchingApi: false});
       });
   }

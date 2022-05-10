@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
-import './App.css';
+import '../style.css';
 
 export default function App () {
   const [videoUrl, setVideoUrl] = useState('');
@@ -12,13 +12,14 @@ export default function App () {
     const match = url.match(regExp);
 
     return (match && match[7].length === 11) ? '/video/' + match[7] : '/error';
-  }
+  };
 
   return (
     <Container className={'d-flex align-items-center justify-content-center flex-column h-100'} style={{maxWidth: '1020px'}}>
       <Row>
         <Col>
-          <h1>Show dislikes for video on <i className="fa fa-youtube-play" style={{color: '#f00'}} aria-hidden="true" /> YouTube</h1>
+          <h1>Show dislikes for video on <i className="fa fa-youtube-play" style={{color: '#f00'}} aria-hidden="true" /> YouTube
+          </h1>
         </Col>
       </Row>
 
@@ -31,7 +32,7 @@ export default function App () {
             </Form.Group>
 
             <div className={'d-flex justify-content-center mt-3'}>
-              <Button variant="primary" onClick={() => {navigate(urlParser(videoUrl))}}>Check video dislikes</Button>
+              <Button variant="primary" onClick={() => {navigate(urlParser(videoUrl));}}>Check video dislikes</Button>
             </div>
           </Form>
         </Col>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
+import App from './components/App';
 import YoutubeDislike from './components/YoutubeDislike';
 import Error from './components/Error';
 import 'font-awesome/css/font-awesome.min.css';
@@ -17,11 +17,7 @@ ReactDOM.render(
         </Route>
         <Route
           path="*"
-          element={
-            <main style={{ padding: "1rem" }}>
-              404
-            </main>
-          }
+          element={<Error />}
         />
       </Routes>
     </BrowserRouter>
